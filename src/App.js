@@ -5,6 +5,7 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -80,7 +81,12 @@ function App() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false); // Close mobile menu after navigation
     }
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   const openModal = (index) => {
@@ -116,6 +122,26 @@ function App() {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [modalOpen]);
+
+  // Close mobile menu on escape key and prevent body scroll when open
+  useEffect(() => {
+    const handleEscapeKey = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [mobileMenuOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -165,7 +191,33 @@ function App() {
           <div className="logo">
             <h1>Residencial Blanes</h1>
           </div>
-          <nav className="nav">
+          
+          {/* Hamburger Menu Button */}
+          <button 
+            className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="nav desktop-nav">
+            <ul>
+              <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
+              <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
+              <li><a href="#facilities" onClick={() => scrollToSection('facilities')}>Instalaciones</a></li>
+              <li><a href="#services" onClick={() => scrollToSection('services')}>Servicios</a></li>
+              <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')}>Testimonios</a></li>
+              <li><a href="#faq" onClick={() => scrollToSection('faq')}>FAQ</a></li>
+              <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contacto</a></li>
+            </ul>
+          </nav>
+
+          {/* Mobile Navigation */}
+          <nav className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
             <ul>
               <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
               <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
@@ -177,6 +229,12 @@ function App() {
             </ul>
           </nav>
         </div>
+        
+        {/* Mobile Menu Overlay */}
+        <div 
+          className={`mobile-menu-overlay ${mobileMenuOpen ? 'active' : ''}`} 
+          onClick={() => setMobileMenuOpen(false)}
+        ></div>
       </header>
 
       <main>
@@ -189,14 +247,14 @@ function App() {
           <div className="hero-content">
             <div className="hero-text-block">
               <h2>Residencial Blanes</h2>
-              <p>Un hogar donde tu ser querido se siente cuidado, respetado y acompañado</p>
-              <div className="hero-location">
+              <p>Un hogar donde tu ser querido se siente cuidado, respetado y acompañado.</p>
+
+              <div className="hero-buttons">
+                <button className="cta-button hero-button primary" onClick={() => scrollToSection('contact')}>Agendá tu visita</button>
+                <div className="hero-location">
                 <span className="location-icon">📍</span>
                 <span>Montevideo, Uruguay</span>
               </div>
-              <div className="hero-buttons">
-                <button className="cta-button hero-button primary" onClick={() => scrollToSection('contact')}>Agendá tu visita</button>
-                <button className="cta-button hero-button secondary" onClick={() => scrollToSection('about')}>Conocé más</button>
               </div>
             </div>
           </div>
