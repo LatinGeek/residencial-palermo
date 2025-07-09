@@ -81,7 +81,11 @@ function App() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
       setMobileMenuOpen(false); // Close mobile menu after navigation
     }
   };
@@ -142,6 +146,19 @@ function App() {
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if screen width is greater than 768px (desktop breakpoint)
+      if (window.innerWidth > 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [mobileMenuOpen]);
 
   const handleInputChange = (e) => {
