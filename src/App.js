@@ -216,26 +216,28 @@ function App() {
             </ul>
           </nav>
 
-          {/* Mobile Navigation */}
-          <nav className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
-            <ul>
-              <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
-              <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
-              <li><a href="#facilities" onClick={() => scrollToSection('facilities')}>Instalaciones</a></li>
-              <li><a href="#services" onClick={() => scrollToSection('services')}>Servicios</a></li>
-              <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')}>Testimonios</a></li>
-              <li><a href="#faq" onClick={() => scrollToSection('faq')}>FAQ</a></li>
-              <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contacto</a></li>
-            </ul>
-          </nav>
         </div>
-        
-        {/* Mobile Menu Overlay */}
-        <div 
-          className={`mobile-menu-overlay ${mobileMenuOpen ? 'active' : ''}`} 
-          onClick={() => setMobileMenuOpen(false)}
-        ></div>
       </header>
+
+      {/* Mobile Navigation - Moved outside header */}
+      <nav 
+        className={`mobile-nav ${mobileMenuOpen ? 'active' : ''} ${isScrolled ? 'scrolled' : ''}`}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            setMobileMenuOpen(false);
+          }
+        }}
+      >
+        <ul>
+          <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
+          <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
+          <li><a href="#facilities" onClick={() => scrollToSection('facilities')}>Instalaciones</a></li>
+          <li><a href="#services" onClick={() => scrollToSection('services')}>Servicios</a></li>
+          <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')}>Testimonios</a></li>
+          <li><a href="#faq" onClick={() => scrollToSection('faq')}>FAQ</a></li>
+          <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contacto</a></li>
+        </ul>
+      </nav>
 
       <main>
         <section id="home" className="hero">
