@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import './App.css';
 
 function App() {
@@ -157,11 +158,24 @@ function App() {
     setSubmitStatus(null);
 
     try {
-      // Simulate form submission (replace with actual API call)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Here you would typically send the data to your backend
-      console.log('Form submitted:', formData);
+      // EmailJS configuration
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone,
+        message: formData.message,
+        to_email: 'your-email@gmail.com' // Replace with your Gmail address
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
+      console.log('Email sent successfully:', result);
       
       setSubmitStatus('success');
       setFormData({
@@ -174,7 +188,7 @@ function App() {
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error sending email:', error);
       setSubmitStatus('error');
       
       // Reset error status after 5 seconds
