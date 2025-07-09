@@ -32,6 +32,42 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          
+          // Add staggered animation for child elements
+          const children = entry.target.querySelectorAll('.animate-item');
+          children.forEach((child, index) => {
+            setTimeout(() => {
+              child.classList.add('animate-in');
+            }, index * 100);
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections and animated elements
+    const sections = document.querySelectorAll('section');
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    sections.forEach((section) => observer.observe(section));
+    animatedElements.forEach((element) => observer.observe(element));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+      animatedElements.forEach((element) => observer.unobserve(element));
+    };
+  }, []);
+
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflow = 'hidden';
@@ -168,19 +204,19 @@ function App() {
 
         <section id="about" className="about">
           <div className="container">
-            <div className="about-header">
-              <div className="about-badge">
+            <div className="about-header animate-on-scroll">
+              <div className="about-badge animate-item">
                 <span className="badge-icon">🏠</span>
                 <span>Más de 10 años cuidando</span>
               </div>
-              <h2>¿Quiénes somos?</h2>
-              <p className="about-subtitle">Una familia dedicada al bienestar de los adultos mayores</p>
+              <h2 className="animate-item">¿Quiénes somos?</h2>
+              <p className="about-subtitle animate-item">Una familia dedicada al bienestar de los adultos mayores</p>
             </div>
             
             <div className="about-content">
               <div className="about-text">
-                <div className="about-story">
-                  <div className="story-item">
+                <div className="about-story animate-on-scroll">
+                  <div className="story-item animate-item">
                     <div className="story-icon">
                       <span>🌟</span>
                     </div>
@@ -192,7 +228,7 @@ function App() {
                     </div>
                   </div>
                   
-                  <div className="story-item">
+                  <div className="story-item animate-item">
                     <div className="story-icon">
                       <span>❤️</span>
                     </div>
@@ -204,7 +240,7 @@ function App() {
                     </div>
                   </div>
                   
-                  <div className="story-item">
+                  <div className="story-item animate-item">
                     <div className="story-icon">
                       <span>🤝</span>
                     </div>
@@ -235,16 +271,16 @@ function App() {
 
                 </div>
                 
-                <div className="about-stats">
-                  <div className="stat-item">
+                <div className="about-stats animate-on-scroll">
+                  <div className="stat-item animate-item">
                     <div className="stat-number">10+</div>
                     <div className="stat-label">Años de experiencia</div>
                   </div>
-                  <div className="stat-item">
+                  <div className="stat-item animate-item">
                     <div className="stat-number">24/7</div>
                     <div className="stat-label">Atención continua</div>
                   </div>
-                  <div className="stat-item">
+                  <div className="stat-item animate-item">
                     <div className="stat-number">100%</div>
                     <div className="stat-label">Compromiso familiar</div>
                   </div>
@@ -256,37 +292,37 @@ function App() {
 
         <section id="facilities" className="facilities">
           <div className="container">
-            <h2>Nuestras instalaciones</h2>
-            <p className="facilities-intro">Residencial Blanes cuenta con espacios amplios, cómodos y adaptados a las necesidades de cada residente. Nuestro objetivo es que se sientan realmente en casa, con toda la seguridad y el confort necesarios.</p>
-            <div className="facilities-features">
-              <div className="feature-item">
+            <h2 className="animate-on-scroll animate-item">Nuestras instalaciones</h2>
+            <p className="facilities-intro animate-on-scroll animate-item">Residencial Blanes cuenta con espacios amplios, cómodos y adaptados a las necesidades de cada residente. Nuestro objetivo es que se sientan realmente en casa, con toda la seguridad y el confort necesarios.</p>
+            <div className="facilities-features animate-on-scroll">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🏡</span>
                 <span>Habitaciones privadas y compartidas</span>
               </div>
-              <div className="feature-item">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🍽️</span>
                 <span>Comedor con alimentos caseros y supervisión nutricional</span>
               </div>
-              <div className="feature-item">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🌳</span>
                 <span>Espacios verdes y jardín interno</span>
               </div>
-              <div className="feature-item">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🛋️</span>
                 <span>Salón de descanso y actividades recreativas</span>
               </div>
-              <div className="feature-item">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🚻</span>
                 <span>Baños adaptados con accesibilidad total</span>
               </div>
-              <div className="feature-item">
+              <div className="feature-item animate-item">
                 <span className="feature-icon">🛏️</span>
                 <span>Camas ortopédicas y mobiliario funcional</span>
               </div>
             </div>
-            <div className="gallery-grid">
+            <div className="gallery-grid animate-on-scroll">
               {galleryImages.map((image, index) => (
-                <div key={index} className="gallery-item" onClick={() => openModal(index)}>
+                <div key={index} className="gallery-item animate-item" onClick={() => openModal(index)}>
                   <img src={image.src} alt={image.alt} />
                   <div className="gallery-overlay">
                     <span className="zoom-icon">🔍</span>
@@ -300,9 +336,9 @@ function App() {
         <section id="services" className="services">
           <div className="container">
             <div className="services-content">
-              <div className="services-text">
-                <h2>Servicios que ofrecemos</h2>
-                <p className="services-intro">En Residencial Blanes brindamos un cuidado integral que abarca lo físico, emocional y social, con un enfoque humano y personalizado.</p>
+              <div className="services-text animate-on-scroll">
+                <h2 className="animate-item">Servicios que ofrecemos</h2>
+                <p className="services-intro animate-item">En Residencial Blanes brindamos un cuidado integral que abarca lo físico, emocional y social, con un enfoque humano y personalizado.</p>
                 <ul>
                   <li><span className="service-icon">👩‍⚕️</span> Atención de enfermería 24 horas</li>
                   <li><span className="service-icon">🩺</span> Supervisión médica periódica</li>
@@ -326,17 +362,17 @@ function App() {
 
         <section id="testimonials" className="testimonials">
           <div className="container">
-            <h2>Testimonios</h2>
-            <div className="testimonials-grid">
-              <div className="testimonial-item">
+            <h2 className="animate-on-scroll animate-item">Testimonios</h2>
+            <div className="testimonials-grid animate-on-scroll">
+              <div className="testimonial-item animate-item">
                 <p>"Mi madre volvió a sonreír desde que está en Blanes. No solo la cuidan bien, la hacen sentir querida."</p>
                 <cite>— Ana, hija de una residente</cite>
               </div>
-              <div className="testimonial-item">
+              <div className="testimonial-item animate-item">
                 <p>"La tranquilidad que tengo sabiendo que mi padre está en buenas manos no tiene precio."</p>
                 <cite>— Gustavo, familiar</cite>
               </div>
-              <div className="testimonial-item">
+              <div className="testimonial-item animate-item">
                 <p>"El equipo es excelente, muy humano y dedicado. Se nota que trabajan con el corazón."</p>
                 <cite>— María Elena, sobrina</cite>
               </div>
@@ -346,30 +382,30 @@ function App() {
 
         <section className="why-choose-us">
           <div className="container">
-            <h2>¿Por qué elegirnos?</h2>
-            <h3>Porque no es solo un lugar: es un hogar.</h3>
-            <div className="benefits-grid">
-              <div className="benefit-item">
+            <h2 className="animate-on-scroll animate-item">¿Por qué elegirnos?</h2>
+            <h3 className="animate-on-scroll animate-item">Porque no es solo un lugar: es un hogar.</h3>
+            <div className="benefits-grid animate-on-scroll">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Trato cálido, familiar y cercano</span>
               </div>
-              <div className="benefit-item">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Personal capacitado y comprometido</span>
               </div>
-              <div className="benefit-item">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Comunicación constante con la familia</span>
               </div>
-              <div className="benefit-item">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Instalaciones seguras y adaptadas</span>
               </div>
-              <div className="benefit-item">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Más de 10 años de experiencia cuidando con amor</span>
               </div>
-              <div className="benefit-item">
+              <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
                 <span>Actividades recreativas y estimulación cognitiva</span>
               </div>
@@ -380,26 +416,26 @@ function App() {
 
         <section id="faq" className="faq">
           <div className="container">
-            <h2>Preguntas frecuentes</h2>
-            <div className="faq-content">
+            <h2 className="animate-on-scroll animate-item">Preguntas frecuentes</h2>
+            <div className="faq-content animate-on-scroll">
               <div className="faq-text">
-                <div className="faq-item">
+                <div className="faq-item animate-item">
                   <h3>¿Puedo visitar antes de decidir?</h3>
                   <p>Sí, podés agendar una visita en el día y horario que te quede más cómodo. Nos encantará recibirte.</p>
                 </div>
-                <div className="faq-item">
+                <div className="faq-item animate-item">
                   <h3>¿Qué tipo de personas pueden ingresar?</h3>
                   <p>Recibimos adultos mayores autoválidos o con dependencia leve o moderada. Adaptamos el cuidado a cada caso.</p>
                 </div>
-                <div className="faq-item">
+                <div className="faq-item animate-item">
                   <h3>¿Puedo visitar a mi familiar todos los días?</h3>
                   <p>Sí, nuestras visitas son abiertas dentro del horario definido, con mucha flexibilidad y respeto por los vínculos.</p>
                 </div>
-                <div className="faq-item">
+                <div className="faq-item animate-item">
                   <h3>¿Qué incluye la estadía?</h3>
                   <p>Incluye alojamiento, 4 comidas diarias, higiene, medicación, atención de salud y actividades recreativas.</p>
                 </div>
-                <div className="faq-item">
+                <div className="faq-item animate-item">
                   <h3>¿Tienen médico en el lugar?</h3>
                   <p>Contamos con control médico regular y asistencia de enfermería permanente. Derivamos a especialistas cuando es necesario.</p>
                 </div>
@@ -414,14 +450,14 @@ function App() {
             <div className="contact-overlay"></div>
           </div>
           <div className="container">
-            <div className="contact-header">
-              <h2>¿Querés conocer Residencial Blanes?</h2>
-              <p className="contact-intro">Te invitamos a visitarnos y descubrir por qué tantas familias confían en nosotros.</p>
+            <div className="contact-header animate-on-scroll">
+              <h2 className="animate-item">¿Querés conocer Residencial Blanes?</h2>
+              <p className="contact-intro animate-item">Te invitamos a visitarnos y descubrir por qué tantas familias confían en nosotros.</p>
             </div>
             
             <div className="contact-content">
-              <div className="contact-info">
-                <div className="contact-card">
+              <div className="contact-info animate-on-scroll">
+                <div className="contact-card animate-item">
                   <div className="contact-icon">📍</div>
                   <div className="contact-details">
                     <h4>Dirección</h4>
@@ -429,7 +465,7 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="contact-card">
+                <div className="contact-card animate-item">
                   <div className="contact-icon">📞</div>
                   <div className="contact-details">
                     <h4>Teléfono / WhatsApp</h4>
@@ -437,7 +473,7 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="contact-card">
+                <div className="contact-card animate-item">
                   <div className="contact-icon">🕒</div>
                   <div className="contact-details">
                     <h4>Horarios de atención</h4>
@@ -445,7 +481,7 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="contact-card">
+                <div className="contact-card animate-item">
                   <div className="contact-icon">✉️</div>
                   <div className="contact-details">
                     <h4>Email</h4>
@@ -453,7 +489,7 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="contact-cta">
+                <div className="contact-cta animate-item">
                   <h3>¡Agendá tu visita hoy!</h3>
                   <p>Conocé nuestras instalaciones y conversá con nuestro equipo sin compromiso.</p>
                 </div>
