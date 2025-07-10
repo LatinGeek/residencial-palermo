@@ -272,7 +272,7 @@ function App() {
 
       <main>
         <section id="home" className="hero">
-          <video autoPlay muted loop>
+          <video autoPlay muted loop playsInline>
             <source src="/videos/hero-video-light.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
