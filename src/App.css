@@ -203,7 +203,7 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -1477,9 +1477,9 @@ section.animate-in {
   opacity: 1 !important;
   transform: none !important;
   width: 100%;
-  height: 100vh;
-  max-width: 100vw;
-  max-height: 100vh;
+  height: 100dvh;
+  max-width: 100dvw;
+  max-height: 100dvh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -1490,8 +1490,8 @@ section.animate-in {
 .hero video {
   width: 100%;
   height: 100%;
-  max-width: 100vw;
-  max-height: 100vh;
+  max-width: 100dvw;
+  max-height: 100dvh;
   object-fit: cover;
 }
 
