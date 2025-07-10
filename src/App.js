@@ -274,6 +274,7 @@ function App() {
         <section id="home" className="hero">
           <video autoPlay muted loop playsInline>
             <source src="/videos/hero-video-light.mp4" type="video/mp4" />
+            <source src="/videos/hero-video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           <div className="hero-overlay"></div>
