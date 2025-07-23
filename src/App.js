@@ -9,20 +9,22 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
+    businessName: '',
     email: '',
     phone: '',
+    businessType: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const galleryImages = [
-    { src: "/images/2.avif", alt: "Interior 1" },
-    { src: "/images/3.avif", alt: "Interior 2" },
-    { src: "/images/4.avif", alt: "Interior 3" },
-    { src: "/images/5.avif", alt: "Interior 4" },
-    { src: "/images/6.avif", alt: "Interior 5" },
-    { src: "/images/7.avif", alt: "Interior 6" }
+  const productImages = [
+    { src: "/images/ravioles-img.jpg", alt: "Ravioles artesanales" },
+    { src: "/images/gnoccis-img.jpeg", alt: "Ñoquis de papa" },
+    { src: "/images/sorrentinos-img.webp", alt: "Sorrentinos rellenos" },
+    { src: "/images/tortellini-img.jpg", alt: "Tortellini frescos" },
+    { src: "/images/pastas-varias-img.jpg", alt: "Variedad de pastas" },
+    { src: "/images/penne-rigate.jpg", alt: "Penne rigate" }
   ];
 
   useEffect(() => {
@@ -104,11 +106,11 @@ function App() {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
   };
 
   const handleKeyDown = (e) => {
@@ -178,10 +180,12 @@ function App() {
       // EmailJS configuration
       const templateParams = {
         from_name: formData.name,
+        business_name: formData.businessName,
+        business_type: formData.businessType,
         from_email: formData.email,
         from_phone: formData.phone,
         message: formData.message,
-        to_email: 'your-email@gmail.com' // Replace with your Gmail address
+        to_email: 'ventas@belmangiare.com'
       };
 
       // Send email using EmailJS
@@ -197,8 +201,10 @@ function App() {
       setSubmitStatus('success');
       setFormData({
         name: '',
+        businessName: '',
         email: '',
         phone: '',
+        businessType: '',
         message: ''
       });
       
@@ -220,7 +226,7 @@ function App() {
       <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           <div className="logo">
-            <h1>Residencial Blanes</h1>
+            <img src="/images/bel-mangiare-logo.png" alt="Bel Mangiare" style={{height: '40px'}} />
           </div>
           
           {/* Hamburger Menu Button */}
@@ -239,11 +245,11 @@ function App() {
             <ul>
               <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
               <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
-              <li><a href="#facilities" onClick={() => scrollToSection('facilities')}>Instalaciones</a></li>
-              <li><a href="#services" onClick={() => scrollToSection('services')}>Servicios</a></li>
+              <li><a href="#products" onClick={() => scrollToSection('products')}>Productos</a></li>
+              <li><a href="#clients" onClick={() => scrollToSection('clients')}>Clientes</a></li>
               <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')}>Testimonios</a></li>
               <li><a href="#faq" onClick={() => scrollToSection('faq')}>FAQ</a></li>
-              <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contacto</a></li>
+              <li><a href="#contact" onClick={() => scrollToSection('contact')}>Pedidos</a></li>
             </ul>
           </nav>
 
@@ -262,158 +268,143 @@ function App() {
         <ul>
           <li><a href="#home" onClick={() => scrollToSection('home')}>Inicio</a></li>
           <li><a href="#about" onClick={() => scrollToSection('about')}>Nosotros</a></li>
-          <li><a href="#facilities" onClick={() => scrollToSection('facilities')}>Instalaciones</a></li>
-          <li><a href="#services" onClick={() => scrollToSection('services')}>Servicios</a></li>
+          <li><a href="#products" onClick={() => scrollToSection('products')}>Productos</a></li>
+          <li><a href="#clients" onClick={() => scrollToSection('clients')}>Clientes</a></li>
           <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')}>Testimonios</a></li>
           <li><a href="#faq" onClick={() => scrollToSection('faq')}>FAQ</a></li>
-          <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contacto</a></li>
+          <li><a href="#contact" onClick={() => scrollToSection('contact')}>Pedidos</a></li>
         </ul>
       </nav>
 
       <main>
         <section id="home" className="hero">
-          <video autoPlay muted loop playsInline>
-            <source src="/videos/hero-video-light.mp4" type="video/mp4" />
-            <source src="/videos/hero-video.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
+          <img src="/images/pastas-hero-banner.webp" alt="Bel Mangiare pasta production" className="hero-background" />
           <div className="hero-overlay"></div>
           <div className="hero-content">
-            <div className="hero-text-block">
-              <h2>Residencial Blanes</h2>
-              <p>Un hogar donde tu ser querido se siente cuidado, respetado y acompañado.</p>
+            <div className="hero-text-centered">
+              <h2>Pasta fresca artesanal con sabor casero para tu negocio</h2>
+              <p>En Bel Mangiare elaboramos cada día pastas hechas como en casa, con ingredientes seleccionados y recetas tradicionales. Entregamos a comercios, residenciales y restaurantes que valoran el verdadero sabor.</p>
 
-              <div className="hero-buttons">
-                <button className="cta-button hero-button primary" onClick={() => scrollToSection('contact')}>Agendá tu visita</button>
-                <div className="hero-location">
-                <span className="location-icon">📍</span>
-                <span>Montevideo, Uruguay</span>
-              </div>
+              <div className="hero-actions">
+                <div className="hero-cta-row">
+                  <button className="cta-button hero-button primary" onClick={() => scrollToSection('contact')}>Solicitá tu presupuesto sin compromiso</button>
+                </div>
+                <div className="hero-location-row">
+                  <div className="hero-location">
+                    <span className="location-icon">📍</span>
+                    <span>Montevideo, Uruguay</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="about" className="about">
+        <section id="about" className="about-modern">
           <div className="container">
-            <div className="about-header animate-on-scroll">
-              <div className="about-badge animate-item">
-                <span className="badge-icon">🏠</span>
-                <span>Más de 10 años cuidando</span>
+            <div className="about-header-modern animate-on-scroll">
+              <div className="about-badge-modern animate-item">
+                <span className="badge-icon">🍝</span>
+                <span>Más de 15 años elaborando</span>
               </div>
               <h2 className="animate-item">¿Quiénes somos?</h2>
-              <p className="about-subtitle animate-item">Una familia dedicada al bienestar de los adultos mayores</p>
+              <p className="about-subtitle-modern animate-item">Una familia dedicada a la pasta artesanal de calidad</p>
             </div>
             
-            <div className="about-content">
-              <div className="about-text">
-                <div className="about-story animate-on-scroll">
-                  <div className="story-item animate-item">
-                    <div className="story-icon">
-                      <span>🌟</span>
-                    </div>
-                    <div className="story-content">
-                      <h3>Nuestro propósito</h3>
-                      <p>
-                        En Residencial Blanes abrimos nuestras puertas hace más de 10 años con un único propósito: ofrecer un hogar real y humano para los adultos mayores que necesitan compañía, cuidado y respeto en esta etapa de su vida.
-                      </p>
+            <div className="about-content-modern">
+              <div className="about-image-section animate-on-scroll animate-item">
+                <div className="about-image-container-modern">
+                  <img src="/images/fabricasdepastas.jpg" alt="Fábrica Bel Mangiare" />
+                  <div className="image-overlay-modern">
+                    <div className="overlay-content-modern">
+                      <h4>15+ años</h4>
+                      <p>Elaborando pasta artesanal con tradición familiar</p>
                     </div>
                   </div>
-                  
-                  <div className="story-item animate-item">
-                    <div className="story-icon">
-                      <span>❤️</span>
-                    </div>
-                    <div className="story-content">
-                      <h3>Vocación familiar</h3>
-                      <p>
-                        Fundado por una familia con vocación por el bienestar de las personas, Blanes nació como una casa de puertas abiertas, donde cada residente es tratado con cercanía, dignidad y profesionalismo. Sabemos que dejar a un ser querido en manos de otros no es una decisión fácil, por eso trabajamos cada día para ganarnos la confianza de las familias.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="story-item animate-item">
-                    <div className="story-icon">
-                      <span>🤝</span>
-                    </div>
-                    <div className="story-content">
-                      <h3>Equipo comprometido</h3>
-                      <p>
-                        Contamos con un equipo capacitado y comprometido que combina experiencia médica, atención personalizada y un profundo sentido humano. Cada rincón de nuestra casa está pensado para generar un ambiente cálido, seguro y activo, donde los mayores puedan sentirse acompañados y valorados.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="about-quote">
-                  <blockquote>
-                    "Hoy, después de más de una década de trabajo, seguimos creciendo con el mismo compromiso: cuidar como en casa, y estar presentes como una familia extendida."
-                  </blockquote>
-                </div>
-                
-                <div className="about-actions">
-                  <button className="cta-button primary" onClick={() => scrollToSection('contact')}>Hablá con nosotros</button>
-                  <button className="cta-button secondary" onClick={() => scrollToSection('facilities')}>Ver instalaciones</button>
                 </div>
               </div>
               
-              <div className="about-visual">
-                <div className="about-image-container">
-                  <img src="/images/1.avif" alt="Residencial Blanes" />
-
+              <div className="about-text-modern">
+                <div className="about-story-modern animate-on-scroll">
+                  <div className="story-item-modern animate-item">
+                    <div className="story-number">01</div>
+                    <div className="story-content-modern">
+                      <h3>Nuestro propósito</h3>
+                      <p>
+                        En Bel Mangiare abrimos nuestras puertas hace más de 15 años con un único propósito: elaborar pastas frescas artesanales con la misma dedicación que en casa, pero pensadas para negocios que necesitan volumen, calidad y cumplimiento.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="story-item-modern animate-item">
+                    <div className="story-number">02</div>
+                    <div className="story-content-modern">
+                      <h3>Tradición familiar</h3>
+                      <p>
+                        Fundado por una familia con vocación por la gastronomía, Bel Mangiare nació como una fábrica con alma de cocina familiar. Creemos que el sabor casero no debería perderse, incluso cuando se produce en escala.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="story-item-modern animate-item">
+                    <div className="story-number">03</div>
+                    <div className="story-content-modern">
+                      <h3>Compromiso comercial</h3>
+                      <p>
+                        Nos especializamos en la venta al por mayor, atendiendo a diversos tipos de negocios. Nuestra fábrica está equipada para responder con agilidad y cumplimiento, manteniendo el corazón de una cocina familiar.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="about-stats animate-on-scroll">
-                  <div className="stat-item animate-item">
-                    <div className="stat-number">10+</div>
-                    <div className="stat-label">Años de experiencia</div>
-                  </div>
-                  <div className="stat-item animate-item">
-                    <div className="stat-number">24/7</div>
-                    <div className="stat-label">Atención continua</div>
-                  </div>
-                  <div className="stat-item animate-item">
-                    <div className="stat-number">100%</div>
-                    <div className="stat-label">Compromiso familiar</div>
-                  </div>
+                <div className="about-quote-modern animate-on-scroll animate-item">
+                  <div className="quote-icon">“</div>
+                  <blockquote>
+                    Comer bien es nuestro nombre. Y también nuestra misión. Después de más de 15 años, seguimos elaborando con la misma pasión: pasta fresca como en casa, pero para tu negocio.
+                  </blockquote>
+                </div>
+                
+                <div className="about-actions-modern animate-on-scroll animate-item">
+                  <button className="cta-button primary" onClick={() => scrollToSection('contact')}>Solicitá tu cotización</button>
+                  <button className="cta-button secondary" onClick={() => scrollToSection('products')}>Ver productos</button>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="facilities" className="facilities">
+        <section id="products" className="facilities">
           <div className="container">
-            <h2 className="animate-on-scroll animate-item">Nuestras instalaciones</h2>
-            <p className="facilities-intro animate-on-scroll animate-item">Residencial Blanes cuenta con espacios amplios, cómodos y adaptados a las necesidades de cada residente. Nuestro objetivo es que se sientan realmente en casa, con toda la seguridad y el confort necesarios.</p>
+            <h2 className="animate-on-scroll animate-item">Nuestros productos</h2>
+            <p className="facilities-intro animate-on-scroll animate-item">Elaboramos pasta fresca todos los días, con materia prima de primera y recetas italianas que combinan tradición con el paladar local. Nuestras opciones más solicitadas por comercios y restaurantes:</p>
             <div className="facilities-features animate-on-scroll">
               <div className="feature-item animate-item">
-                <span className="feature-icon">🏡</span>
-                <span>Habitaciones privadas y compartidas</span>
+                <span className="feature-icon">🥟</span>
+                <span>Ñoquis de papa (tradicionales o rellenos)</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🍽️</span>
-                <span>Comedor con alimentos caseros y supervisión nutricional</span>
+                <span className="feature-icon">🥟</span>
+                <span>Ravioles: verdura, ricota, carne, jamón y queso</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🌳</span>
-                <span>Espacios verdes y jardín interno</span>
+                <span className="feature-icon">🍜</span>
+                <span>Tallarines y cintas</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🛋️</span>
-                <span>Salón de descanso y actividades recreativas</span>
+                <span className="feature-icon">🧀</span>
+                <span>Sorrentinos: jamón y queso, panceta y queso, caprese</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🚻</span>
-                <span>Baños adaptados con accesibilidad total</span>
+                <span className="feature-icon">🌿</span>
+                <span>Opciones integrales o sin sal (bajo pedido)</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🛏️</span>
-                <span>Camas ortopédicas y mobiliario funcional</span>
+                <span className="feature-icon">📦</span>
+                <span>Pasta cocida al vacío, ideal para residenciales</span>
               </div>
             </div>
             <div className="gallery-grid animate-on-scroll">
-              {galleryImages.map((image, index) => (
+              {productImages.map((image, index) => (
                 <div key={index} className="gallery-item animate-item" onClick={() => openModal(index)}>
                   <img src={image.src} alt={image.alt} />
                   <div className="gallery-overlay">
@@ -422,31 +413,30 @@ function App() {
                 </div>
               ))}
             </div>
+            <div className="product-note animate-on-scroll animate-item">
+              <p><em>Cada bocado tiene historia, textura y sabor real. También desarrollamos recetas personalizadas para clientes frecuentes.</em></p>
+            </div>
           </div>
         </section>
 
-        <section id="services" className="services">
+        <section id="clients" className="services">
           <div className="container">
             <div className="services-content">
               <div className="services-text animate-on-scroll">
-                <h2 className="animate-item">Servicios que ofrecemos</h2>
-                <p className="services-intro animate-item">En Residencial Blanes brindamos un cuidado integral que abarca lo físico, emocional y social, con un enfoque humano y personalizado.</p>
+                <h2 className="animate-item">¿A quiénes vendemos?</h2>
+                <p className="services-intro animate-item">Aunque somos una fábrica, nuestro espíritu sigue siendo casero. Nos especializamos en venta al por mayor, brindando calidad y cumplimiento a diferentes tipos de negocios:</p>
                 <ul>
-                  <li><span className="service-icon">👩‍⚕️</span> Atención de enfermería 24 horas</li>
-                  <li><span className="service-icon">🩺</span> Supervisión médica periódica</li>
-                  <li><span className="service-icon">🍽️</span> Alimentación completa, casera y adaptada</li>
-                  <li><span className="service-icon">💊</span> Control de medicación diario</li>
-                  <li><span className="service-icon">🧼</span> Asistencia en higiene y cuidado personal</li>
-                  <li><span className="service-icon">🎵</span> Musicoterapia grupal</li>
-                  <li><span className="service-icon">🧘‍♂️</span> Fisioterapia y gimnasia suave</li>
-                  <li><span className="service-icon">🎨</span> Actividades recreativas y de estimulación cognitiva</li>
-                  <li><span className="service-icon">🧘‍♀️</span> Acompañamiento emocional y espiritual</li>
-                  <li><span className="service-icon">🔒</span> Ambiente seguro y adaptado para todas las edades</li>
+                  <li><span className="service-icon">🏥</span> Residenciales y hogares de adultos mayores</li>
+                  <li><span className="service-icon">👥</span> Consumidor final</li>
+                  <li><span className="service-icon">🍽️</span> Restaurantes y rotiserías</li>
+                  <li><span className="service-icon">🛒</span> Almacenes y supermercados</li>
+                  <li><span className="service-icon">🧊</span> Tiendas de congelados y productos gourmet</li>
+                  <li><span className="service-icon">🚛</span> Distribuidores y revendedores</li>
                 </ul>
-                <p className="services-quote">"Cuidamos a cada persona como nos gustaría que cuidaran a nuestros propios padres."</p>
+                <p className="services-quote">"Nuestros clientes eligen Bel Mangiare porque saben que el sabor, la textura y la presentación importan. Proveemos a negocios, pero cocinamos como si fuera para nuestra familia."</p>
               </div>
               <div className="services-image">
-                <img src="/images/8.avif" alt="Servicios" />
+                <img src="/images/pastas-maquina.jpg" alt="Producción de pastas" />
               </div>
             </div>
           </div>
@@ -457,16 +447,16 @@ function App() {
             <h2 className="animate-on-scroll animate-item">Testimonios</h2>
             <div className="testimonials-grid animate-on-scroll">
               <div className="testimonial-item animate-item">
-                <p>"Mi madre volvió a sonreír desde que está en Blanes. No solo la cuidan bien, la hacen sentir querida."</p>
-                <cite>— Ana, hija de una residente</cite>
+                <p>"Las pastas de Bel Mangiare son exactamente lo que buscábamos: sabor casero y calidad constante. Nuestros huéspedes siempre quedan satisfechos."</p>
+                <cite>— Carmen, Directora de Residencial San José</cite>
               </div>
               <div className="testimonial-item animate-item">
-                <p>"La tranquilidad que tengo sabiendo que mi padre está en buenas manos no tiene precio."</p>
-                <cite>— Gustavo, familiar</cite>
+                <p>"Trabajamos con Bel Mangiare hace 3 años. Su cumplimiento en entrega y la frescura de sus productos nos permite confiar completamente."</p>
+                <cite>— Roberto, Dueño de Restaurante Il Forno</cite>
               </div>
               <div className="testimonial-item animate-item">
-                <p>"El equipo es excelente, muy humano y dedicado. Se nota que trabajan con el corazón."</p>
-                <cite>— María Elena, sobrina</cite>
+                <p>"La diferencia se nota en cada bocado. Los ravioles y ñoquis tienen esa textura y sabor que solo se logra con experiencia artesanal."</p>
+                <cite>— Lucía, Distribuidora Gourmet</cite>
               </div>
             </div>
           </div>
@@ -475,34 +465,34 @@ function App() {
         <section className="why-choose-us">
           <div className="container">
             <h2 className="animate-on-scroll animate-item">¿Por qué elegirnos?</h2>
-            <h3 className="animate-on-scroll animate-item">Porque no es solo un lugar: es un hogar.</h3>
+            <h3 className="animate-on-scroll animate-item">Por qué elegir Bel Mangiare</h3>
             <div className="benefits-grid animate-on-scroll">
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Trato cálido, familiar y cercano</span>
+                <span>Producción artesanal con maquinaria adaptada</span>
               </div>
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Personal capacitado y comprometido</span>
+                <span>Sabor casero garantizado</span>
               </div>
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Comunicación constante con la familia</span>
+                <span>Ingredientes frescos y de alta calidad</span>
               </div>
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Instalaciones seguras y adaptadas</span>
+                <span>Cumplimiento en tiempo y forma</span>
               </div>
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Más de 10 años de experiencia cuidando con amor</span>
+                <span>Atención personalizada y directa</span>
               </div>
               <div className="benefit-item animate-item">
                 <span className="benefit-icon">✅</span>
-                <span>Actividades recreativas y estimulación cognitiva</span>
+                <span>Pedidos flexibles y sin complicaciones</span>
               </div>
             </div>
-            <p className="tagline">"En Blanes no cuidamos pacientes, cuidamos personas."</p>
+            <p className="tagline">"Proveemos a negocios, pero cocinamos como si fuera para nuestra familia."</p>
           </div>
         </section>
 
@@ -512,24 +502,24 @@ function App() {
             <div className="faq-content animate-on-scroll">
               <div className="faq-text">
                 <div className="faq-item animate-item">
-                  <h3>¿Puedo visitar antes de decidir?</h3>
-                  <p>Sí, podés agendar una visita en el día y horario que te quede más cómodo. Nos encantará recibirte.</p>
+                  <h3>¿Venden al público particular?</h3>
+                  <p>Sí. Puedes encontrarnos en Montevideo, José Serrato 3647 o enviar un mensaje al WhatsApp, si estás en nuestra zona de envíos podemos enviártelo a tu hogar.</p>
                 </div>
                 <div className="faq-item animate-item">
-                  <h3>¿Qué tipo de personas pueden ingresar?</h3>
-                  <p>Recibimos adultos mayores autoválidos o con dependencia leve o moderada. Adaptamos el cuidado a cada caso.</p>
+                  <h3>¿Tienen mínimo de pedido?</h3>
+                  <p>Sí, pero adaptamos según zona y frecuencia. Consultá sin compromiso.</p>
                 </div>
                 <div className="faq-item animate-item">
-                  <h3>¿Puedo visitar a mi familiar todos los días?</h3>
-                  <p>Sí, nuestras visitas son abiertas dentro del horario definido, con mucha flexibilidad y respeto por los vínculos.</p>
+                  <h3>¿Puedo elegir el tipo de relleno o tamaño?</h3>
+                  <p>Sí, producimos recetas personalizadas para clientes frecuentes.</p>
                 </div>
                 <div className="faq-item animate-item">
-                  <h3>¿Qué incluye la estadía?</h3>
-                  <p>Incluye alojamiento, 4 comidas diarias, higiene, medicación, atención de salud y actividades recreativas.</p>
+                  <h3>¿Tienen precios online?</h3>
+                  <p>No. Cotizamos según volumen y destino. Enviamos propuesta detallada por WhatsApp o mail.</p>
                 </div>
                 <div className="faq-item animate-item">
-                  <h3>¿Tienen médico en el lugar?</h3>
-                  <p>Contamos con control médico regular y asistencia de enfermería permanente. Derivamos a especialistas cuando es necesario.</p>
+                  <h3>¿Cuál es el proceso de pedido?</h3>
+                  <p>Contactános por WhatsApp o formulario, definimos productos y cantidades, acordamos entrega y facturación. Simple y directo.</p>
                 </div>
               </div>
             </div>
@@ -538,68 +528,57 @@ function App() {
 
         <section id="contact" className="contact">
           <div className="contact-background">
-            <img src="/images/9.jpg" alt="Contact Background" className="contact-bg-image" />
+            <img src="/images/pastas-varias-img.jpg" alt="Contact Background" className="contact-bg-image" />
             <div className="contact-overlay"></div>
           </div>
           <div className="container">
             <div className="contact-header animate-on-scroll">
-              <h2 className="animate-item">¿Querés conocer Residencial Blanes?</h2>
-              <p className="contact-intro animate-item">Te invitamos a visitarnos y descubrir por qué tantas familias confían en nosotros.</p>
+              <h2 className="animate-item">¿Querés sumar pastas artesanales de verdad a tu negocio?</h2>
+              <p className="contact-intro animate-item">Contactános y te enviamos una propuesta clara, rápida y adaptada a tus necesidades.</p>
             </div>
             
-            <div className="contact-content">
-              <div className="contact-info animate-on-scroll">
-                <div className="contact-card animate-item">
-                  <div className="contact-icon">📍</div>
-                  <div className="contact-details">
-                    <h4>Dirección</h4>
-                    <p>Blanes 1234 - Montevideo</p>
+            <div className="contact-content-centered">
+              <div className="contact-info-centered animate-on-scroll">
+                <div className="contact-info-grid">
+                  <div className="contact-item animate-item">
+                    <div className="contact-icon">📍</div>
+                    <h4>Producción</h4>
+                    <p>Montevideo, Uruguay</p>
                   </div>
-                </div>
-                
-                <div className="contact-card animate-item">
-                  <div className="contact-icon">📞</div>
-                  <div className="contact-details">
-                    <h4>Teléfono / WhatsApp</h4>
-                    <p>094 123 456</p>
+                  
+                  <div className="contact-item animate-item">
+                    <div className="contact-icon">📞</div>
+                    <h4>WhatsApp Pedidos</h4>
+                    <p>094 xxx xxx</p>
                   </div>
-                </div>
-                
-                <div className="contact-card animate-item">
-                  <div className="contact-icon">🕒</div>
-                  <div className="contact-details">
-                    <h4>Horarios de atención</h4>
-                    <p>Lunes a sábado de 9 a 18 hs</p>
+                  
+                  <div className="contact-item animate-item">
+                    <div className="contact-icon">🕒</div>
+                    <h4>Horarios</h4>
+                    <p>Lunes a viernes de 8 a 16 hs</p>
                   </div>
-                </div>
-                
-                <div className="contact-card animate-item">
-                  <div className="contact-icon">✉️</div>
-                  <div className="contact-details">
+                  
+                  <div className="contact-item animate-item">
+                    <div className="contact-icon">✉️</div>
                     <h4>Email</h4>
-                    <p>contacto@residencialblanes.com</p>
+                    <p>ventas@belmangiare.com</p>
                   </div>
-                </div>
-                
-                <div className="contact-cta animate-item">
-                  <h3>¡Agendá tu visita hoy!</h3>
-                  <p>Conocé nuestras instalaciones y conversá con nuestro equipo sin compromiso.</p>
                 </div>
               </div>
               
-              <div className="contact-form-container">
+              <div className="contact-form-centered">
                 <form className="contact-form" onSubmit={handleSubmit}>
-                  <h3>Envianos tu consulta</h3>
+                  <h3>Solicitá tu cotización</h3>
                   
                   {submitStatus === 'success' && (
                     <div className="form-message success">
-                      <span>✅ ¡Gracias! Tu consulta fue enviada exitosamente. Nos pondremos en contacto contigo pronto.</span>
+                      <span>✅ ¡Gracias! Tu solicitud fue enviada exitosamente. Te enviaremos una cotización personalizada pronto.</span>
                     </div>
                   )}
                   
                   {submitStatus === 'error' && (
                     <div className="form-message error">
-                      <span>❌ Hubo un error al enviar tu consulta. Por favor, intentá nuevamente.</span>
+                      <span>❌ Hubo un error al enviar tu solicitud. Por favor, intentá nuevamente.</span>
                     </div>
                   )}
                   
@@ -607,11 +586,39 @@ function App() {
                     <input 
                       type="text" 
                       name="name"
-                      placeholder="Nombre completo" 
+                      placeholder="Nombre del contacto" 
                       value={formData.name}
                       onChange={handleInputChange}
                       required 
                     />
+                  </div>
+                  <div className="form-group">
+                    <input 
+                      type="text" 
+                      name="businessName"
+                      placeholder="Nombre del negocio/empresa" 
+                      value={formData.businessName}
+                      onChange={handleInputChange}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <select 
+                      name="businessType"
+                      value={formData.businessType}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Tipo de negocio</option>
+                      <option value="restaurante">Restaurante</option>
+                      <option value="residencial">Residencial/Hogar</option>
+                      <option value="almacen">Almacén/Supermercado</option>
+                      <option value="rotiseria">Rotisería</option>
+                      <option value="distribuidor">Distribuidor</option>
+                      <option value="gourmet">Tienda Gourmet</option>
+                      <option value="particular">Consumidor Final</option>
+                      <option value="otro">Otro</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <input 
@@ -627,7 +634,7 @@ function App() {
                     <input 
                       type="tel" 
                       name="phone"
-                      placeholder="Teléfono" 
+                      placeholder="Teléfono/WhatsApp" 
                       value={formData.phone}
                       onChange={handleInputChange}
                       required 
@@ -636,7 +643,7 @@ function App() {
                   <div className="form-group">
                     <textarea 
                       name="message"
-                      placeholder="Cuéntanos sobre tu consulta..." 
+                      placeholder="Cuéntanos sobre tu negocio y qué productos te interesan..." 
                       rows="5" 
                       value={formData.message}
                       onChange={handleInputChange}
@@ -655,7 +662,7 @@ function App() {
                       </>
                     ) : (
                       <>
-                        <span>Agendá tu visita</span>
+                        <span>Solicitá cotización</span>
                         <span className="btn-icon">→</span>
                       </>
                     )}
@@ -671,13 +678,13 @@ function App() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-info">
-              <h3>Residencial Blanes</h3>
-              <p>📍 Blanes 1234 - Montevideo</p>
-              <p>📞 Teléfono / WhatsApp: 094 123 456</p>
-              <p>🕒 Lunes a sábado de 9 a 18 hs</p>
+              <h3>Bel Mangiare</h3>
+              <p>📍 Producción: Montevideo</p>
+              <p>📞 WhatsApp: 094 xxx xxx</p>
+              <p>🕒 Lunes a viernes de 8 a 16 hs</p>
             </div>
             <div className="footer-contact">
-              <p>&copy; 2024 Residencial Blanes. Todos los derechos reservados.</p>
+              <p>&copy; 2024 Bel Mangiare. Todos los derechos reservados.</p>
             </div>
           </div>
         </div>
@@ -692,14 +699,14 @@ function App() {
             <button className="modal-nav modal-next" onClick={nextImage}>›</button>
             <div className="modal-image-container">
               <img 
-                src={galleryImages[currentImageIndex].src} 
-                alt={galleryImages[currentImageIndex].alt} 
+                src={productImages[currentImageIndex].src} 
+                alt={productImages[currentImageIndex].alt} 
                 className="modal-image"
               />
             </div>
             <div className="modal-info">
               <span className="modal-counter">
-                {currentImageIndex + 1} / {galleryImages.length}
+                {currentImageIndex + 1} / {productImages.length}
               </span>
             </div>
           </div>
