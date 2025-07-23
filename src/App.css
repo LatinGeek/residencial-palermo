@@ -194,7 +194,7 @@ body {
 
 /* Solid menu items when header is scrolled */
 .mobile-nav.scrolled ul {
-  background: rgba(80, 50, 41, 0.9);
+  background: rgba(28, 45, 115, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
