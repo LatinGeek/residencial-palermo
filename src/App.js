@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faHome, faCouch, faLeaf, faUtensils, faBath, faBed, faUserMd, faPills, faHandsBubbles, faMusic, faMedkit, faBook, faBrain, faPhone, faClock, faEnvelope, faCheckCircle, faExclamationTriangle, faHourglass, faArrowRight, faSearch, faTimes, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './App.css';
 
 function App() {
@@ -232,7 +235,7 @@ function App() {
       <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           <div className="logo">
-            <h1>Palermo</h1>
+            <h1>Residencial Palermo</h1>
           </div>
           
           {/* Hamburger Menu Button */}
@@ -300,7 +303,7 @@ function App() {
                 </div>
                 <div className="hero-location-row">
                   <div className="hero-location">
-                    <span className="location-icon">📍</span>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
                     <span>Montevideo, Uruguay</span>
                   </div>
                 </div>
@@ -313,7 +316,7 @@ function App() {
           <div className="container">
             <div className="about-header-modern animate-on-scroll">
               <div className="about-badge-modern animate-item">
-                <span className="badge-icon">🏠</span>
+                <FontAwesomeIcon icon={faHome} className="badge-icon" />
                 <span>Más de 15 años cuidando</span>
               </div>
               <h2 className="animate-item">¿Quiénes somos?</h2>
@@ -388,27 +391,27 @@ function App() {
             <p className="facilities-intro animate-on-scroll animate-item">Pensadas para favorecer la comodidad, el descanso y la seguridad, nuestras instalaciones ofrecen:</p>
             <div className="facilities-features animate-on-scroll">
               <div className="feature-item animate-item">
-                <span className="feature-icon">🏠</span>
+                <FontAwesomeIcon icon={faHome} className="feature-icon" />
                 <span>Habitaciones individuales y dobles, ventiladas y luminosas</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🛋️</span>
+                <FontAwesomeIcon icon={faCouch} className="feature-icon" />
                 <span>Espacios comunes tranquilos para leer, conversar o descansar</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🌿</span>
+                <FontAwesomeIcon icon={faLeaf} className="feature-icon" />
                 <span>Patio interno con plantas y zona de aire libre</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🍽️</span>
+                <FontAwesomeIcon icon={faUtensils} className="feature-icon" />
                 <span>Comedor con menú adaptado a cada residente</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🛁</span>
+                <FontAwesomeIcon icon={faBath} className="feature-icon" />
                 <span>Baños adaptados con acceso seguro</span>
               </div>
               <div className="feature-item animate-item">
-                <span className="feature-icon">🛏️</span>
+                <FontAwesomeIcon icon={faBed} className="feature-icon" />
                 <span>Camas ortopédicas y asistencia si es requerida</span>
               </div>
             </div>
@@ -417,7 +420,7 @@ function App() {
                 <div key={index} className="gallery-item animate-item" onClick={() => openModal(index)}>
                   <img src={image.src} alt={image.alt} />
                   <div className="gallery-overlay">
-                    <span className="zoom-icon">🔍</span>
+                    <FontAwesomeIcon icon={faSearch} className="zoom-icon" />
                   </div>
                 </div>
               ))}
@@ -438,7 +441,7 @@ function App() {
             <div className="services-grid animate-on-scroll">
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">👩‍⚕️</span>
+                  <FontAwesomeIcon icon={faUserMd} className="service-icon" />
                 </div>
                 <h3>Enfermería y supervisión médica</h3>
                 <p>Atención profesional las 24 horas con personal especializado en geriatría y cuidados médicos.</p>
@@ -446,7 +449,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">🍴</span>
+                  <FontAwesomeIcon icon={faUtensils} className="service-icon" />
                 </div>
                 <h3>Alimentación casera adaptada</h3>
                 <p>Menús nutritivos y personalizados según las necesidades dietéticas de cada residente.</p>
@@ -454,7 +457,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">💊</span>
+                  <FontAwesomeIcon icon={faPills} className="service-icon" />
                 </div>
                 <h3>Administración de medicación</h3>
                 <p>Control y administración segura de medicamentos con seguimiento profesional.</p>
@@ -462,7 +465,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">🧼</span>
+                  <FontAwesomeIcon icon={faHandsBubbles} className="service-icon" />
                 </div>
                 <h3>Higiene diaria y asistencia</h3>
                 <p>Cuidado personal completo con respeto a la dignidad y privacidad de cada persona.</p>
@@ -470,7 +473,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">🎵</span>
+                  <FontAwesomeIcon icon={faMusic} className="service-icon" />
                 </div>
                 <h3>Musicoterapia y estimulación</h3>
                 <p>Actividades cognitivas y terapia musical para mantener la mente activa y el bienestar emocional.</p>
@@ -478,7 +481,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">🧘‍♀️</span>
+                  <FontAwesomeIcon icon={faMedkit} className="service-icon" />
                 </div>
                 <h3>Fisioterapia y movilidad</h3>
                 <p>Ejercicios adaptados y terapia física para mantener la movilidad y independencia.</p>
@@ -486,7 +489,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">📖</span>
+                  <FontAwesomeIcon icon={faBook} className="service-icon" />
                 </div>
                 <h3>Actividades recreativas</h3>
                 <p>Programas de entretenimiento y socialización adaptados a los intereses de cada residente.</p>
@@ -494,7 +497,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">🧠</span>
+                  <FontAwesomeIcon icon={faBrain} className="service-icon" />
                 </div>
                 <h3>Acompañamiento emocional</h3>
                 <p>Apoyo psicológico y conversación activa para mantener el bienestar mental y social.</p>
@@ -502,7 +505,7 @@ function App() {
               
               <div className="service-card animate-item">
                 <div className="service-icon-container">
-                  <span className="service-icon">📞</span>
+                  <FontAwesomeIcon icon={faPhone} className="service-icon" />
                 </div>
                 <h3>Contacto fluido con la familia</h3>
                 <p>Comunicación constante y transparente con familiares sobre el cuidado y bienestar.</p>
@@ -547,7 +550,7 @@ function App() {
             <div className="benefits-grid animate-on-scroll">
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">🏡</span>
+                  <FontAwesomeIcon icon={faHome} className="benefit-icon" />
                 </div>
                 <h3>Entorno silencioso y armonioso</h3>
                 <p>Espacios diseñados para la tranquilidad, donde cada rincón respira paz y serenidad para el descanso pleno.</p>
@@ -555,7 +558,7 @@ function App() {
               
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">👥</span>
+                  <FontAwesomeIcon icon={faUserMd} className="benefit-icon" />
                 </div>
                 <h3>Atención cercana y con seguimiento</h3>
                 <p>Cuidado personalizado con seguimiento continuo de cada residente por nuestro equipo profesional.</p>
@@ -563,7 +566,7 @@ function App() {
               
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">🎯</span>
+                  <FontAwesomeIcon icon={faCheckCircle} className="benefit-icon" />
                 </div>
                 <h3>Plan de actividades suaves y adaptadas</h3>
                 <p>Programas diseñados específicamente para cada persona, respetando sus ritmos y preferencias individuales.</p>
@@ -571,7 +574,7 @@ function App() {
               
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">💬</span>
+                  <FontAwesomeIcon icon={faPhone} className="benefit-icon" />
                 </div>
                 <h3>Comunicación directa con la familia</h3>
                 <p>Mantenemos a las familias informadas con comunicación transparente y abierta sobre el bienestar de sus seres queridos.</p>
@@ -579,7 +582,7 @@ function App() {
               
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">🕒</span>
+                  <FontAwesomeIcon icon={faClock} className="benefit-icon" />
                 </div>
                 <h3>Flexibilidad en visitas y rutinas</h3>
                 <p>Horarios adaptables que respetan las necesidades familiares y los hábitos de cada residente.</p>
@@ -587,7 +590,7 @@ function App() {
               
               <div className="benefit-card animate-item">
                 <div className="benefit-icon-container">
-                  <span className="benefit-icon">🛡️</span>
+                  <FontAwesomeIcon icon={faCheckCircle} className="benefit-icon" />
                 </div>
                 <h3>Seguridad las 24 horas</h3>
                 <p>Supervisión constante y protocolos de seguridad que garantizan tranquilidad total para residentes y familias.</p>
@@ -647,7 +650,7 @@ function App() {
               <div className="contact-info-section animate-on-scroll">
                 <div className="contact-info-cards">
                   <div className="contact-card animate-item">
-                    <div className="contact-icon">📍</div>
+                    <div className="contact-icon"><FontAwesomeIcon icon={faMapMarkerAlt} /></div>
                     <div className="contact-content">
                       <h4>Dirección</h4>
                       <p>Montevideo, Uruguay</p>
@@ -655,7 +658,7 @@ function App() {
                   </div>
                   
                   <div className="contact-card animate-item">
-                    <div className="contact-icon">📞</div>
+                    <div className="contact-icon"><FontAwesomeIcon icon={faPhone} /></div>
                     <div className="contact-content">
                       <h4>Teléfono / WhatsApp</h4>
                       <p>094 xxx xxx</p>
@@ -663,7 +666,7 @@ function App() {
                   </div>
                   
                   <div className="contact-card animate-item">
-                    <div className="contact-icon">🕒</div>
+                    <div className="contact-icon"><FontAwesomeIcon icon={faClock} /></div>
                     <div className="contact-content">
                       <h4>Horarios</h4>
                       <p>Lunes a viernes de 10 a 17 hs</p>
@@ -671,7 +674,7 @@ function App() {
                   </div>
                   
                   <div className="contact-card animate-item">
-                    <div className="contact-icon">✉️</div>
+                    <div className="contact-icon"><FontAwesomeIcon icon={faEnvelope} /></div>
                     <div className="contact-content">
                       <h4>Email</h4>
                       <p>contacto@residencialpalermo.com</p>
@@ -690,13 +693,13 @@ function App() {
                     
                     {submitStatus === 'success' && (
                       <div className="form-message success">
-                        <span>✅ ¡Gracias! Tu solicitud fue enviada exitosamente. Te contactaremos pronto para coordinar la visita.</span>
+                        <span><FontAwesomeIcon icon={faCheckCircle} /> ¡Gracias! Tu solicitud fue enviada exitosamente. Te contactaremos pronto para coordinar la visita.</span>
                       </div>
                     )}
                     
                     {submitStatus === 'error' && (
                       <div className="form-message error">
-                        <span>❌ Hubo un error al enviar tu solicitud. Por favor, intentá nuevamente.</span>
+                        <span><FontAwesomeIcon icon={faExclamationTriangle} /> Hubo un error al enviar tu solicitud. Por favor, intentá nuevamente.</span>
                       </div>
                     )}
                     
@@ -816,12 +819,12 @@ function App() {
                       {isSubmitting ? (
                         <>
                           <span>Enviando...</span>
-                          <span className="btn-icon">⏳</span>
+                          <FontAwesomeIcon icon={faHourglass} className="btn-icon" />
                         </>
                       ) : (
                         <>
                           <span>Coordiná tu visita</span>
-                          <span className="btn-icon">→</span>
+                          <FontAwesomeIcon icon={faArrowRight} className="btn-icon" />
                         </>
                       )}
                     </button>
@@ -838,9 +841,9 @@ function App() {
           <div className="footer-content">
             <div className="footer-info">
               <h3>Residencial Palermo</h3>
-              <p>📍 Montevideo, Uruguay</p>
-              <p>📞 Teléfono / WhatsApp: [09x xxx xxx]</p>
-              <p>🕒 Lunes a viernes de 10 a 17 hs</p>
+              <p><FontAwesomeIcon icon={faMapMarkerAlt} /> Montevideo, Uruguay</p>
+              <p><FontAwesomeIcon icon={faPhone} /> Teléfono / WhatsApp: [09x xxx xxx]</p>
+              <p><FontAwesomeIcon icon={faClock} /> Lunes a viernes de 10 a 17 hs</p>
             </div>
             <div className="footer-contact">
               <p>&copy; 2024 Residencial Palermo. Todos los derechos reservados.</p>
@@ -853,9 +856,9 @@ function App() {
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>×</button>
-            <button className="modal-nav modal-prev" onClick={prevImage}>‹</button>
-            <button className="modal-nav modal-next" onClick={nextImage}>›</button>
+            <button className="modal-close" onClick={closeModal}><FontAwesomeIcon icon={faTimes} /></button>
+            <button className="modal-nav modal-prev" onClick={prevImage}><FontAwesomeIcon icon={faChevronLeft} /></button>
+            <button className="modal-nav modal-next" onClick={nextImage}><FontAwesomeIcon icon={faChevronRight} /></button>
             <div className="modal-image-container">
               <img 
                 src={facilityImages[currentImageIndex].src} 
@@ -871,6 +874,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* WhatsApp Floating Button */}
+      <a 
+        href="https://wa.me/59894300386" 
+        className="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+      >
+        <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" />
+      </a>
     </div>
   );
 }
