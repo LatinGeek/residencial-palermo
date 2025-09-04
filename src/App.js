@@ -22,6 +22,10 @@ function App() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [cookiesAccepted, setCookiesAccepted] = useState(
+    localStorage.getItem('cookiesAccepted') === 'true'
+  );
+  const [termsModalOpen, setTermsModalOpen] = useState(false);
 
   const facilityImages = [
     { src: "/images/individual-room.jpg", alt: "Habitación individual luminosa" },
@@ -78,12 +82,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (modalOpen) {
+    if (modalOpen || termsModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [modalOpen]);
+  }, [modalOpen, termsModalOpen]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -176,6 +180,19 @@ function App() {
     }));
   };
 
+  const acceptCookies = () => {
+    setCookiesAccepted(true);
+    localStorage.setItem('cookiesAccepted', 'true');
+  };
+
+  const openTermsModal = () => {
+    setTermsModalOpen(true);
+  };
+
+  const closeTermsModal = () => {
+    setTermsModalOpen(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -192,15 +209,15 @@ function App() {
         from_email: formData.email,
         from_phone: formData.phone,
         message: formData.message,
-        to_email: 'contacto@residencialpalermo.com'
+        to_email: 'residencialpalermogm@gmail.com'
       };
 
       // Send email using EmailJS
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'belmangiare', // Replace with your EmailJS service ID
+        'template_ktyhmfk', // Replace with your EmailJS template ID
         templateParams,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        '0mGtb4M2aFPwut2D0' // Replace with your EmailJS public key
       );
 
       console.log('Email sent successfully:', result);
@@ -847,6 +864,15 @@ function App() {
             </div>
             <div className="footer-contact">
               <p>&copy; 2024 Residencial Palermo. Todos los derechos reservados.</p>
+              <p>
+                <button 
+                  className="terms-link" 
+                  onClick={openTermsModal}
+                  aria-label="Ver términos y condiciones"
+                >
+                  Términos y Condiciones
+                </button>
+              </p>
             </div>
           </div>
         </div>
@@ -870,6 +896,151 @@ function App() {
               <span className="modal-counter">
                 {currentImageIndex + 1} / {facilityImages.length}
               </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cookie Acceptance Banner */}
+      {!cookiesAccepted && (
+        <div className="cookie-banner">
+          <div className="cookie-content">
+            <div className="cookie-text">
+              <p>
+                <strong>🍪 Utilizamos cookies</strong><br />
+                Este sitio web utiliza cookies para mejorar tu experiencia de navegación y analizar el tráfico del sitio. 
+                Al continuar navegando, aceptas nuestro uso de cookies.
+              </p>
+            </div>
+            <div className="cookie-actions">
+              <button className="cookie-btn accept-btn" onClick={acceptCookies}>
+                Aceptar todas
+              </button>
+              <button className="cookie-btn terms-btn" onClick={openTermsModal}>
+                Ver términos
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Terms and Conditions Modal */}
+      {termsModalOpen && (
+        <div className="modal-overlay terms-overlay" onClick={closeTermsModal}>
+          <div className="modal-content terms-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="terms-header">
+              <h2>Términos y Condiciones</h2>
+              <button className="modal-close" onClick={closeTermsModal}>
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <div className="terms-content">
+              <div className="terms-section">
+                <h3>1. Información General</h3>
+                <p>
+                  Estos términos y condiciones regulan el uso del sitio web de Residencial Palermo, 
+                  establecimiento dedicado al cuidado y atención de adultos mayores ubicado en Montevideo, Uruguay.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>2. Servicios Ofrecidos</h3>
+                <p>
+                  Residencial Palermo ofrece servicios de cuidado residencial para adultos mayores, incluyendo:
+                </p>
+                <ul>
+                  <li>Alojamiento en habitaciones individuales y compartidas</li>
+                  <li>Atención médica y de enfermería especializada</li>
+                  <li>Alimentación adaptada y personalizada</li>
+                  <li>Actividades recreativas y terapéuticas</li>
+                  <li>Acompañamiento emocional y social</li>
+                </ul>
+              </div>
+
+              <div className="terms-section">
+                <h3>3. Uso del Sitio Web</h3>
+                <p>
+                  Al acceder y utilizar este sitio web, usted acepta cumplir con estos términos y condiciones. 
+                  El contenido de este sitio es únicamente informativo y no constituye una oferta contractual.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>4. Privacidad y Protección de Datos</h3>
+                <p>
+                  Nos comprometemos a proteger la privacidad de nuestros usuarios. Los datos personales 
+                  proporcionados a través del formulario de contacto serán utilizados únicamente para:
+                </p>
+                <ul>
+                  <li>Responder a consultas y coordinar visitas</li>
+                  <li>Proporcionar información sobre nuestros servicios</li>
+                  <li>Mantener comunicación sobre el cuidado del residente</li>
+                </ul>
+                <p>
+                  No compartimos información personal con terceros sin consentimiento expreso, 
+                  excepto cuando sea requerido por ley.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>5. Cookies</h3>
+                <p>
+                  Utilizamos cookies para mejorar la experiencia del usuario y analizar el tráfico del sitio. 
+                  Las cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>6. Propiedad Intelectual</h3>
+                <p>
+                  Todo el contenido de este sitio web, incluyendo textos, imágenes, logotipos y diseño, 
+                  es propiedad de Residencial Palermo y está protegido por las leyes de propiedad intelectual.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>7. Limitación de Responsabilidad</h3>
+                <p>
+                  Residencial Palermo se esfuerza por mantener la información del sitio web actualizada y precisa, 
+                  pero no garantiza la exactitud, completitud o actualidad de toda la información.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>8. Modificaciones</h3>
+                <p>
+                  Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. 
+                  Las modificaciones entrarán en vigor inmediatamente después de su publicación en el sitio web.
+                </p>
+              </div>
+
+              <div className="terms-section">
+                <h3>9. Contacto</h3>
+                <p>
+                  Para cualquier consulta sobre estos términos y condiciones, puede contactarnos:
+                </p>
+                <ul>
+                  <li>Email: contacto@residencialpalermo.com</li>
+                  <li>Teléfono: 094 300 386</li>
+                  <li>Dirección: Montevideo, Uruguay</li>
+                </ul>
+              </div>
+
+              <div className="terms-section">
+                <h3>10. Ley Aplicable</h3>
+                <p>
+                  Estos términos y condiciones se rigen por las leyes de la República Oriental del Uruguay. 
+                  Cualquier disputa será sometida a la jurisdicción de los tribunales competentes de Montevideo.
+                </p>
+                <p className="terms-date">
+                  <strong>Última actualización:</strong> Septiembre 2024
+                </p>
+              </div>
+            </div>
+            <div className="terms-footer">
+              <button className="cta-button primary" onClick={closeTermsModal}>
+                Cerrar
+              </button>
             </div>
           </div>
         </div>
