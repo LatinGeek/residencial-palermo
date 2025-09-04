@@ -670,7 +670,7 @@ function App() {
                     <div className="contact-icon"><FontAwesomeIcon icon={faMapMarkerAlt} /></div>
                     <div className="contact-content">
                       <h4>Dirección</h4>
-                      <p>Montevideo, Uruguay</p>
+                      <p>Gral. Rivera 2287</p>
                     </div>
                   </div>
                   
@@ -678,7 +678,7 @@ function App() {
                     <div className="contact-icon"><FontAwesomeIcon icon={faPhone} /></div>
                     <div className="contact-content">
                       <h4>Teléfono / WhatsApp</h4>
-                      <p>094 xxx xxx</p>
+                      <p>099 757 138</p>
                     </div>
                   </div>
                   
@@ -694,7 +694,7 @@ function App() {
                     <div className="contact-icon"><FontAwesomeIcon icon={faEnvelope} /></div>
                     <div className="contact-content">
                       <h4>Email</h4>
-                      <p>contacto@residencialpalermo.com</p>
+                      <p>residencialpalermogm@gmail.com</p>
                     </div>
                   </div>
                 </div>
@@ -858,8 +858,8 @@ function App() {
           <div className="footer-content">
             <div className="footer-info">
               <h3>Residencial Palermo</h3>
-              <p><FontAwesomeIcon icon={faMapMarkerAlt} /> Montevideo, Uruguay</p>
-              <p><FontAwesomeIcon icon={faPhone} /> Teléfono / WhatsApp: [09x xxx xxx]</p>
+              <p><FontAwesomeIcon icon={faMapMarkerAlt} /> Gral. Rivera 2287, Montevideo</p>
+              <p><FontAwesomeIcon icon={faPhone} /> Teléfono / WhatsApp: 099 757 138</p>
               <p><FontAwesomeIcon icon={faClock} /> Lunes a viernes de 10 a 17 hs</p>
             </div>
             <div className="footer-contact">
@@ -1020,9 +1020,9 @@ function App() {
                   Para cualquier consulta sobre estos términos y condiciones, puede contactarnos:
                 </p>
                 <ul>
-                  <li>Email: contacto@residencialpalermo.com</li>
-                  <li>Teléfono: 094 300 386</li>
-                  <li>Dirección: Montevideo, Uruguay</li>
+                  <li>Email: residencialpalermogm@gmail.com</li>
+                  <li>Teléfono: 099 757 138</li>
+                  <li>Dirección: Gral. Rivera 2287, Montevideo</li>
                 </ul>
               </div>
 
@@ -1033,7 +1033,7 @@ function App() {
                   Cualquier disputa será sometida a la jurisdicción de los tribunales competentes de Montevideo.
                 </p>
                 <p className="terms-date">
-                  <strong>Última actualización:</strong> Septiembre 2024
+                  <strong>Última actualización:</strong> Septiembre 2025
                 </p>
               </div>
             </div>
