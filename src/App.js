@@ -28,12 +28,14 @@ function App() {
   const [termsModalOpen, setTermsModalOpen] = useState(false);
 
   const facilityImages = [
-    { src: "/images/individual-room.jpg", alt: "Habitación individual luminosa" },
-    { src: "/images/double-room.jpg", alt: "Habitación doble confortable" },
-    { src: "/images/common-area-reading.jpg", alt: "Área común de lectura" },
-    { src: "/images/interior-patio.jpg", alt: "Patio interior con plantas" },
-    { src: "/images/dining-room.jpg", alt: "Comedor adaptado" },
-    { src: "/images/accessible-bathroom.jpg", alt: "Baño adaptado" }
+    { src: "/images/new-images/palermo-02.jpg", alt: "Instalaciones de Residencial Palermo" },
+    { src: "/images/new-images/palermo-05.jpg", alt: "Espacios de convivencia" },
+    { src: "/images/new-images/palermo-20.jpg", alt: "Áreas comunes de la residencia" },
+    { src: "/images/new-images/palermo-23.jpg", alt: "Ambiente acogedor" },
+    { src: "/images/new-images/palermo-24.jpg", alt: "Espacios de descanso" },
+    { src: "/images/new-images/palermo-25.jpg", alt: "Instalaciones confortables" },
+    { src: "/images/new-images/palermo-33.jpg", alt: "Zonas de recreación" },
+    { src: "/images/new-images/palermo-35.jpg", alt: "Nuestras instalaciones" }
   ];
 
   useEffect(() => {
@@ -304,7 +306,7 @@ function App() {
 
       <main>
         <section id="home" className="hero">
-          <img src="/images/hero-facility-exterior.jpg" alt="Residencial Palermo - Facility exterior" className="hero-background" />
+          <img src="/images/happy-woman.jpg" alt="Residencial Palermo - Cuidado con calidez" className="hero-background" />
           <div className="hero-overlay"></div>
           <div className="hero-content">
             <div className="hero-text-centered">
