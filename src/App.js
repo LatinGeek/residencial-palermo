@@ -28,14 +28,17 @@ function App() {
   const [termsModalOpen, setTermsModalOpen] = useState(false);
 
   const facilityImages = [
-    { src: "/images/new-images/palermo-02.jpg", alt: "Instalaciones de Residencial Palermo" },
-    { src: "/images/new-images/palermo-05.jpg", alt: "Espacios de convivencia" },
-    { src: "/images/new-images/palermo-20.jpg", alt: "Áreas comunes de la residencia" },
-    { src: "/images/new-images/palermo-23.jpg", alt: "Ambiente acogedor" },
-    { src: "/images/new-images/palermo-24.jpg", alt: "Espacios de descanso" },
-    { src: "/images/new-images/palermo-25.jpg", alt: "Instalaciones confortables" },
-    { src: "/images/new-images/palermo-33.jpg", alt: "Zonas de recreación" },
-    { src: "/images/new-images/palermo-35.jpg", alt: "Nuestras instalaciones" }
+    { src: "/images/new-images-2/01. Dormitorio - Palermo.png", alt: "Dormitorio de Residencial Palermo" },
+    { src: "/images/new-images-2/02. Cocina - Palermo.png", alt: "Cocina de la residencia" },
+    { src: "/images/new-images-2/03. Baño - Palermo.png", alt: "Baño adaptado" },
+    { src: "/images/new-images-2/04. Dormitorio 2 - Palermo.png", alt: "Dormitorio confortable" },
+    { src: "/images/new-images-2/06. Fachada - Palermo.png", alt: "Fachada de Residencial Palermo" },
+    { src: "/images/new-images-2/07. Personal - Palermo.png", alt: "Nuestro equipo de cuidado" },
+    { src: "/images/new-images-2/08. Patio - Palermo.png", alt: "Patio y áreas al aire libre" },
+    { src: "/images/new-images-2/09. Reunion - Palermo.png", alt: "Espacios de convivencia" },
+    { src: "/images/new-images-2/10. Baño 2 - Palermo.png", alt: "Baño de las instalaciones" },
+    { src: "/images/new-images-2/11. Cartel - Palermo.png", alt: "Residencial Palermo" },
+    { src: "/images/new-images-2/12 - Dormitorio 3 - Palermo.png", alt: "Dormitorio de la residencia" }
   ];
 
   useEffect(() => {

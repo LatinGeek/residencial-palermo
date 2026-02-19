@@ -845,17 +845,28 @@ body {
 }
 
 .zoom-icon {
-  font-size: 2.5rem;
+  font-size: 0.9rem;
   color: white;
   background: rgba(255, 255, 255, 0.2);
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  min-height: 72px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.zoom-icon svg {
+  max-width: 18px;
+  max-height: 18px;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
 }
 
 .product-note {
